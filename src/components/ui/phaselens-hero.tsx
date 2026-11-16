@@ -70,7 +70,7 @@ export default function PhaseLensHero({
     <section
       aria-label="Introduction"
       className={cn(
-        "relative isolate flex min-h-[600px] h-svh w-full flex-col overflow-hidden bg-navy-900 text-chalk",
+        "relative isolate flex min-h-[max(100svh,600px)] w-full max-w-none flex-col overflow-hidden bg-navy-900 text-chalk",
         className,
       )}
     >
@@ -80,7 +80,7 @@ export default function PhaseLensHero({
           src={posterSrc}
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 -z-20 size-full object-cover"
+          className="absolute inset-0 -z-20 h-full w-full max-w-none object-cover"
           style={{ objectPosition }}
         />
       ) : (
@@ -95,7 +95,7 @@ export default function PhaseLensHero({
           preload="auto"
           aria-hidden="true"
           tabIndex={-1}
-          className="absolute inset-0 -z-20 size-full object-cover"
+          className="absolute inset-0 -z-20 h-full w-full max-w-none object-cover"
           style={{ objectPosition }}
         />
       )}
@@ -103,66 +103,69 @@ export default function PhaseLensHero({
       {/* OVERLAY — deepest at the top and left, where the copy sits over the night sky */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgb(7_18_34/0.88)_0%,rgb(11_26_46/0.6)_32%,rgb(11_26_46/0.12)_62%,rgb(7_18_34/0.7)_100%)]"
+        className="pointer-events-none absolute inset-0 -z-10 h-full w-full bg-[linear-gradient(180deg,rgb(7_18_34/0.88)_0%,rgb(11_26_46/0.6)_32%,rgb(11_26_46/0.12)_62%,rgb(7_18_34/0.7)_100%)]"
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -z-10 hidden bg-[linear-gradient(90deg,rgb(7_18_34/0.78)_0%,rgb(7_18_34/0.45)_38%,transparent_66%)] md:block"
+        className="pointer-events-none absolute inset-0 -z-10 hidden h-full w-full bg-[linear-gradient(90deg,rgb(7_18_34/0.78)_0%,rgb(7_18_34/0.45)_38%,transparent_66%)] md:block"
       />
 
-      {/* NAVIGATION */}
-      <header className="flex items-center justify-between gap-6 px-5 py-5 sm:px-8 lg:px-12 lg:py-7">
-        <a
-          href="#"
-          className="rounded-sm text-sm font-semibold tracking-[0.2em] text-chalk [font-stretch:125%] outline-none focus-visible:ring-2 focus-visible:ring-pitch-400 focus-visible:ring-offset-4 focus-visible:ring-offset-navy-900"
-        >
-          {brand}
-        </a>
-
-        <nav aria-label="Main" className="hidden items-center gap-9 md:flex">
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="relative rounded-sm py-1 text-[0.9375rem] text-chalk/80 outline-none transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-left after:scale-x-0 after:bg-pitch-500 after:transition-transform after:duration-300 hover:text-chalk hover:after:scale-x-100 focus-visible:text-chalk focus-visible:after:scale-x-100 motion-reduce:after:transition-none"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-
-        <Button
-          asChild
-          variant="outline"
-          className="h-10 gap-2 rounded-md border-chalk/25 bg-navy-950/40 px-4 text-sm text-chalk backdrop-blur-md hover:border-chalk/45 hover:bg-navy-950/60 hover:text-chalk dark:border-chalk/25 dark:bg-navy-950/40 dark:hover:bg-navy-950/60"
-        >
-          <a href={navCta.href} target="_blank" rel="noopener noreferrer">
-            <GitHubMark className="size-4" />
-            {navCta.label}
+      {/* CONTENT — the only width-capped layer; background and overlays stay full-bleed */}
+      <div className="mx-auto flex w-full max-w-[100rem] flex-1 flex-col">
+        {/* NAVIGATION */}
+        <header className="flex items-center justify-between gap-6 px-5 py-5 sm:px-8 lg:px-12 lg:py-7">
+          <a
+            href="#"
+            className="rounded-sm text-sm font-semibold tracking-[0.2em] text-chalk [font-stretch:125%] outline-none focus-visible:ring-2 focus-visible:ring-pitch-400 focus-visible:ring-offset-4 focus-visible:ring-offset-navy-900"
+          >
+            {brand}
           </a>
-        </Button>
-      </header>
 
-      {/* COPY */}
-      <div className="flex flex-1 flex-col px-5 pt-[clamp(2rem,9vh,7rem)] sm:px-8 lg:px-12 motion-safe:animate-hero-in">
-        <h1 className="-ml-[0.04em] text-[clamp(4.5rem,21vw,15rem)] leading-[0.82] font-extrabold tracking-[-0.015em] text-chalk [font-stretch:62%] [text-shadow:0_2px_40px_rgb(7_18_34/0.35)]">
-          {headline}
-        </h1>
+          <nav aria-label="Main" className="hidden items-center gap-9 md:flex">
+            {links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="relative rounded-sm py-1 text-[0.9375rem] text-chalk/80 outline-none transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-left after:scale-x-0 after:bg-pitch-500 after:transition-transform after:duration-300 hover:text-chalk hover:after:scale-x-100 focus-visible:text-chalk focus-visible:after:scale-x-100 motion-reduce:after:transition-none"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
 
-        <p className="mt-6 max-w-[42ch] text-[clamp(1rem,1.35vw,1.1875rem)] leading-relaxed text-chalk/85 [text-shadow:0_1px_18px_rgb(7_18_34/0.5)] sm:mt-8">
-          {subline}
-        </p>
-
-        <div className="mt-8 sm:mt-10">
           <Button
             asChild
-            className="h-12 gap-2.5 rounded-md bg-pitch-500 px-5 text-base font-semibold text-navy-950 shadow-[0_8px_30px_-8px_rgb(63_179_107/0.55)] hover:bg-pitch-400 focus-visible:ring-pitch-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900"
+            variant="outline"
+            className="h-10 gap-2 rounded-md border-chalk/25 bg-navy-950/40 px-4 text-sm text-chalk backdrop-blur-md hover:border-chalk/45 hover:bg-navy-950/60 hover:text-chalk dark:border-chalk/25 dark:bg-navy-950/40 dark:hover:bg-navy-950/60"
           >
-            <a href={primaryCta.href} target="_blank" rel="noopener noreferrer">
-              <GitHubMark className="size-[18px]" />
-              {primaryCta.label}
+            <a href={navCta.href} target="_blank" rel="noopener noreferrer">
+              <GitHubMark className="size-4" />
+              {navCta.label}
             </a>
           </Button>
+        </header>
+
+        {/* COPY */}
+        <div className="flex flex-1 flex-col px-5 pt-[clamp(2rem,9vh,7rem)] sm:px-8 lg:px-12 motion-safe:animate-hero-in">
+          <h1 className="-ml-[0.04em] text-[clamp(4.5rem,21vw,15rem)] leading-[0.82] font-extrabold tracking-[-0.015em] text-chalk [font-stretch:62%] [text-shadow:0_2px_40px_rgb(7_18_34/0.35)]">
+            {headline}
+          </h1>
+
+          <p className="mt-6 max-w-[42ch] text-[clamp(1rem,1.35vw,1.1875rem)] leading-relaxed text-chalk/85 [text-shadow:0_1px_18px_rgb(7_18_34/0.5)] sm:mt-8">
+            {subline}
+          </p>
+
+          <div className="mt-8 sm:mt-10">
+            <Button
+              asChild
+              className="h-12 gap-2.5 rounded-md bg-pitch-500 px-5 text-base font-semibold text-navy-950 shadow-[0_8px_30px_-8px_rgb(63_179_107/0.55)] hover:bg-pitch-400 focus-visible:ring-pitch-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900"
+            >
+              <a href={primaryCta.href} target="_blank" rel="noopener noreferrer">
+                <GitHubMark className="size-[18px]" />
+                {primaryCta.label}
+              </a>
+            </Button>
+          </div>
         </div>
       </div>
     </section>
