@@ -31,7 +31,7 @@ export interface PhaseLensHeroProps {
   className?: string
 }
 
-const GITHUB_URL = "https://github.com/joeets46"
+const GITHUB_URL = "https://github.com/joeets46/phaselens"
 
 const DEFAULT_LINKS: HeroLink[] = [
   { label: "Overview", href: "#overview" },
