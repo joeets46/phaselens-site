@@ -17,6 +17,7 @@ const GROUPS: readonly { title: string; links: readonly { label: string; href: s
       { label: "GitHub repository", href: REPO },
       { label: "Data model", href: `${REPO}/blob/main/docs/data_model.md` },
       { label: "Metric catalog", href: `${REPO}/blob/main/docs/metric_catalog.md` },
+      { label: "Licenses", href: "/third-party-notices.txt" },
     ],
   },
   {
