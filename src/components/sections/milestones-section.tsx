@@ -41,7 +41,8 @@ export default function MilestonesSection() {
     <section id="milestones" aria-labelledby="milestones-heading" className="bg-navy-900 py-24 text-chalk lg:py-32">
       <div className="mx-auto w-full max-w-[100rem] px-5 sm:px-8 lg:px-12">
         <div className="grid gap-x-12 gap-y-12 lg:grid-cols-12">
-          <div className="lg:col-span-5">
+          {/* Sticky on wide screens, so the heading stays in view beside the long list */}
+          <div className="lg:sticky lg:top-16 lg:col-span-5 lg:self-start">
             <p className="text-xs font-semibold tracking-[0.2em] text-pitch-400 [font-stretch:125%]">
               BUILT MILESTONE BY MILESTONE
             </p>
