@@ -165,3 +165,31 @@
     }
   }
 }
+
+/*
+ * The fixed ridge band grows with the page scroll (see PressureRidgeline `band`). Two scales that
+ * multiply: a gentle one over the whole page (transform) and the finale over the last screen
+ * (scale), so the band is at full height where the page meets the footer. Only transforms
+ * change, so nothing is laid out again. Browsers without scroll-driven animations use the
+ * script fallback in the component.
+ */
+@keyframes band-gentle {
+    from { transform: scaleY(var(--s-min)); }
+    to { transform: scaleY(var(--s-mid)); }
+}
+@keyframes band-finale {
+    from { scale: 1 1; }
+    to { scale: 1 var(--s-gain); }
+}
+@supports (animation-timeline: scroll()) {
+    .band-grow {
+        animation: band-gentle linear both, band-finale ease-in-out both;
+        animation-timeline: scroll(root block), scroll(root block);
+        animation-range: 0% 100%, calc(100% - 100vh) 100%;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .band-grow {
+        animation: none;
+    }
+}
