@@ -21,6 +21,19 @@
         from { opacity: 0; transform: translateY(12px); }
         to { opacity: 1; transform: none; }
     }
+
+    /* Gallery lightbox: overlay fade, image zoom-in, and a quick fade when the image changes. */
+    --animate-lightbox-fade: lightbox-fade 0.2s ease-out both;
+    --animate-lightbox-zoom: lightbox-zoom 0.24s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+
+    @keyframes lightbox-fade {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    @keyframes lightbox-zoom {
+        from { opacity: 0; transform: scale(0.96); }
+        to { opacity: 1; transform: none; }
+    }
 }
 
 @theme inline {
